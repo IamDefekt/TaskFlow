@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="form">
+        <form> 
+            <label for="email">Adresse email</label>
+            <input type="text" id="email" placeholder="Email"> 
+
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" placeholder="Mot de passe">
+        </form>
+
+        <button type="button" onclick="login(event)">Se connecter</button> 
+    </div>
+    
+    <script>
+        async function login(event) {
+            event.preventDefault();
+            console.log("login appelé");
+            const res = await fetch('http://localhost:3000/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value
+                })
+            });
+
+            const data = await res.json();
+            localStorage.setItem('token', data.token); 
+            window.location.href = '/task.html?id=69d50fde4ec65411d89da2ab'; 
+        }
+    </script>
+</body>
+</html>

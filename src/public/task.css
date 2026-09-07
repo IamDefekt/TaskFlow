@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #0e0e0e;
+    font-family: Montserrat;
+}
+
+.task {
+    background-color: #afc5b485;
+    width: 80%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 5px;
+}
+
+h1 {
+    text-transform: uppercase;
+    width: 500px;
+    text-align: center;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 20px 40px;
+    width: 100%;
+    margin: 20px 0;
+}
+p {
+    background-color: #efefef;
+    padding: 7px 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.details span {font-weight: 400;}
+
+.line-span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+ 
+.span-line {
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: #0e0e0e;
+}
+ 
+.span-diamond {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: #0e0e0e;
+  transform: rotate(45deg);
+}
+
+.comments {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.comments p {
+    margin-bottom: 10px;
+    max-height: 33px;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+li {margin-left: 50px;}
+
+.addComment {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin: 50px auto; 
+}
+
+input {
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: Montserrat;
+    border: 1px solid #ece6e6
+}
+
+button {
+    background-color: #afc5b485;
+    border-radius: 5px;
+    padding: 7px 10px;
+    border: none;
+    margin-left: 30px;
+    font-family: Montserrat;
+}
+
+

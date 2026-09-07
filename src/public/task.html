@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tâches</title>
+    <link rel="stylesheet" href="task.css">
+</head>
+<body>
+    <div class="task">
+        <h1 id="title"></h1>
+
+        <div class="details">
+            <p>Description : <span id="description"></span></p>
+            <p>Priorité : <span id="priority"></span></p>
+            <p>Terminée : <span id="completed"></span></p>
+            <p>À compléter avant le : <span id="dueDate"></span></p>
+            <p>Crée le : <span id="createdAt"></span></p>
+        </div>
+
+        <div class="line-span">
+            <span class="span-line"></span>
+            <span class="span-diamond"></span>
+            <span class="span-line"></span>
+        </div>
+
+        <div class="comments">
+            <p>Commentaires :</p>
+            <ul id="comments"></ul>
+        </div>
+    </div>
+
+    <div class="addComment">
+        <form action="">
+            <label for="content">Ajouter un commentaire :</label>
+            <input type="text" name="content" id="content">
+            <button type="button" onclick="addComment(event)">Envoyer</button>
+        </form>
+    </div>
+
+    <script>
+        //Récupérer les tâches et les commentaires
+        const params = new URLSearchParams(window.location.search);
+        const taskId = params.get('id');
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            window.location.href = '/login.html';
+        } else {        
+            Promise.all([
+                fetch(`http://localhost:3000/tasks/${taskId}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                }).then(res => res.json()),
+
+                fetch(`http://localhost:3000/tasks/${taskId}/comments`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                }).then(res => res.json())
+            ])
+
+            .then(([task, comments]) => {
+                document.getElementById('title').textContent = task.title;
+                document.getElementById('description').textContent = task.description;
+                document.getElementById('priority').textContent = task.priority;
+                document.getElementById('completed').textContent = task.completed;
+                document.getElementById('dueDate').textContent = new Date(task.dueDate).toLocaleDateString('fr-FR');
+                document.getElementById('createdAt').textContent = new Date(task.createdAt).toLocaleDateString('fr-FR');
+
+                const list = document.getElementById('comments');
+                comments.forEach(comment => {
+                    const li = document.createElement('li');
+                    li.textContent = comment.content;
+                    list.appendChild(li);
+                });
+            });
+        };
+
+        //Ajouter un commentaire
+        async function addComment(event) {
+            const content = document.getElementById('content').value;
+            
+            const res = await fetch(`http://localhost:3000/tasks/${taskId}/comments`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ content })
+            });
+
+            const data = await res.json();
+            const li = document.createElement('li');
+            li.textContent = content;
+            document.getElementById('comments').appendChild(li);
+            document.getElementById('content').value = '';
+        }
+    </script>
+</body>
+</html>

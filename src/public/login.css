@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #0e0e0e;
+    font-family: Montserrat;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin: 50px auto; 
+}
+
+label {margin-top: 20px;}
+
+input {
+    width: 200px;
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: Montserrat;
+    border: 1px solid #ece6e6
+}
+
+button {
+    background-color: #afc5b485;
+    border-radius: 5px;
+    padding: 7px 10px;
+    border: none;
+    font-family: Montserrat;
+}
+
+
