@@ -1,0 +1,21 @@
+# Dépendances
+node_modules/
+
+# Variables d'environnement (secrets, config BDD, JWT...)
+.env
+
+# Fichiers uploadés en test
+src/uploads/*
+!src/uploads/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Éditeurs / IDE
+.vscode/
+.idea/
